@@ -132,7 +132,7 @@ public:
         const Query query = ParseQuery(raw_query);
         auto matched_documents = FindAllDocuments(query);
 
-        sort(matched_documents.begin(), matched_documents.end(),
+        std::sort(matched_documents.begin(), matched_documents.end(),
              [](const auto& lhs, const auto& rhs) {
                  return lhs.relevance > rhs.relevance;
              });
