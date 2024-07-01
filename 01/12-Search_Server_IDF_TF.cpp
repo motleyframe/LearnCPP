@@ -89,8 +89,6 @@ private:
             if(!word_documents_freq_.count(p_word))
                 continue;
 
-       //     const auto& doc_tf_map word_documents_freq_.at(p_word);
-
             double idf = word_documents_freq_.at(p_word).size() == static_cast<size_t>(document_count_)
                        ? 0.0
                        : log(document_count_ / static_cast<double>(word_documents_freq_.at(p_word).size()));
