@@ -148,9 +148,8 @@ SearchServer CreateSearchServer() {
     search_server.SetStopWords(ReadLine());
 
     const int document_count = ReadLineWithNumber();
-    for(int document_id = 0; document_id < document_count; ++document_id) {
+    for(int document_id = 0; document_id < document_count; ++document_id)
         search_server.AddDocument(document_id, ReadLine());
-    }
 
     return search_server;
 }
@@ -163,6 +162,5 @@ int main() {
         std::cout << "{ document_id = "s << document_id << ", "s
                   << "relevance = "s << relevance << " }\n"s;
     }
-
     return 0;
 }
