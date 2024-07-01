@@ -89,14 +89,13 @@ private:
             if(!word_documents_freq_.count(p_word))
                 continue;
 
-       //     const auto& doc_tf_map word_documents_freq_.at(p_word);
-
-            double idf = word_documents_freq_.at(p_word).size() == static_cast<size_t>(document_count_)
+            const auto& freq = word_documents_freq_.at(p_word);
+            double idf = freq.size() == static_cast<size_t>(document_count_)
                        ? 0.0
-                       : log(document_count_ / static_cast<double>(word_documents_freq_.at(p_word).size()));
+                       : log(document_count_ / static_cast<double>(freq.size()));
 
-            for(const auto& [id, _] : word_documents_freq_.at(p_word))
-                tf_idf[id] += word_documents_freq_.at(p_word).at(id) * idf;
+            for(const auto& [id, _] : freq)
+                tf_idf[id] += freq.at(id) * idf;
         }
 
         for(const std::string& w : query.minus_words) {
@@ -153,7 +152,6 @@ SearchServer CreateSearchServer() {
     for(int document_id = 0; document_id < document_count; ++document_id) {
         search_server.AddDocument(document_id, ReadLine());
     }
-
     return search_server;
 }
 
@@ -165,6 +163,5 @@ int main() {
         std::cout << "{ document_id = "s << document_id << ", "s
                   << "relevance = "s << relevance << " }\n"s;
     }
-
     return 0;
 }
