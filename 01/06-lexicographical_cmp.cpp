@@ -36,8 +36,7 @@ int main() {
                                            [](const char& left,const char& right) {
                                                return tolower(left)<tolower(right);
                                            });
-        }
-    );
+        } );
 
     for(const auto& x : data)
         std::cout<<x<<' ';
