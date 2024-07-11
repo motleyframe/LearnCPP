@@ -1,19 +1,3 @@
-Skip to content
-
-Search Gists
-Search...
-All gists
-Back to GitHub
-@cpp-practicum-solutions
-cpp-practicum-solutions/main.cpp Secret
-Last active 5 months ago • Report abuse
-Code
-Revisions
-2
-Clone this repository at &lt;script src=&quot;https://gist.github.com/cpp-practicum-solutions/c1781bbf9c9bdab01acbd6b38d58d3b2.js&quot;&gt;&lt;/script&gt;
-<script src="https://gist.github.com/cpp-practicum-solutions/c1781bbf9c9bdab01acbd6b38d58d3b2.js"></script>
-Solution s02.t02.l02.p02
-main.cpp
 #include <algorithm>
 #include <cmath>
 #include <iostream>
