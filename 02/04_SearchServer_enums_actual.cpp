@@ -74,11 +74,11 @@ public:
 
     std::vector<Document> FindTopDocuments(const std::string& raw_query,DocumentStatus status=DocumentStatus::ACTUAL) const {
         const Query query = ParseQuery(raw_query);
-        const auto matched_documents = FindAllDocuments(query);
-        std::vector<Document> filtered;
+        auto matched_documents = FindAllDocuments(query);
+        std::vector<Document> buf;
 
-        std::copy_if(matched_documents.cbegin(),
-                     matched_documents.cend(),
+        std::copy_if(matched_documents.begin(),
+                     matched_documents.end(),
                      std::back_inserter(filtered),
                      [&status,this]
                      ( auto& doc ) {
@@ -218,7 +218,7 @@ int main() {
     search_server.AddDocument(3, "ухоженный скворец евгений"s,         DocumentStatus::BANNED, {9});
 
     std::cout << "ACTUAL:"s << std::endl;
-    for (const Document& document : search_server.FindTopDocuments("пушистый ухоженный кот"s, DocumentStatus::ACTUAL)) {
+    for (const Document& document : search_server.FindTopDocuments("пушистый ухоженный кот"s)) {
         PrintDocument(document);
     }
 
