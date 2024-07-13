@@ -74,11 +74,11 @@ public:
 
     std::vector<Document> FindTopDocuments(const std::string& raw_query,DocumentStatus status=DocumentStatus::ACTUAL) const {
         const Query query = ParseQuery(raw_query);
-        auto matched_documents = FindAllDocuments(query);
-        std::vector<Document> buf;
+        const auto matched_documents = FindAllDocuments(query);
+        std::vector<Document> filtered;
 
-        std::copy_if(matched_documents.begin(),
-                     matched_documents.end(),
+        std::copy_if(matched_documents.cbegin(),
+                     matched_documents.cend(),
                      std::back_inserter(filtered),
                      [&status,this]
                      ( auto& doc ) {

@@ -72,7 +72,7 @@ public:
         document_ratings_.emplace(document_id, ComputeAverageRating(ratings));
     }
 
-    std::vector<Document> FindTopDocuments(const std::string& raw_query,DocumentStatus status=DocumentStatus::ACTUAL) const {
+    std::vector<Document> FindTopDocuments(const std::string& raw_query,DocumentStatus status) const {
         const Query query = ParseQuery(raw_query);
         const auto matched_documents = FindAllDocuments(query);
         std::vector<Document> filtered;
