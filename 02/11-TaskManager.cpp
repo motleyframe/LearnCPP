@@ -23,14 +23,6 @@ class TeamTasks {
 private:
     std::map<std::string,TasksInfo> person_tasks_;
 
-    Enum NextStatus(const TaskStatus& current) {
-        if(current != Enum::DONE) {
-            int tmp = static_cast<int>(current);
-            return static_cast<TaskStatus>(++tmp);
-        }
-        return current;
-    }
-
 public:
     // Получить статистику по статусам задач конкретного разработчика
     const TasksInfo& GetPersonTasksInfo(const std::string& person) const {
@@ -43,16 +35,11 @@ public:
     // Обновить статусы по данному количеству задач конкретного разработчика,
     // подробности см. ниже
     std::tuple<TasksInfo, TasksInfo> PerformPersonTasks(const std::string& person, int task_count) {
-        auto& current_tasks = person_tasks_.at(person);      //std::map<TaskStatus, int>
+        auto current_tasks = person_tasks_.at(person);      //std::map<TaskStatus, int>;
 
-        for(auto& [status,num] : current_tasks) {
-            if(status != TaskStatus::DONE && --task_count >= -1) {
-                status = NextStatus(status);
-                --num;
-            }
-        }
-
-
+        for(const auto& [status,_] : current_tasks)
+            if(status==TaskStatus::DONE)
+                current_tasks.erase(status);
 
     }
 };
